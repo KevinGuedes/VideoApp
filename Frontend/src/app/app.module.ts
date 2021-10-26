@@ -16,6 +16,11 @@ import { FooterComponent } from './components/templates/footer/footer.component'
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import { VgCoreModule } from '@videogular/ngx-videogular/core';
+import { VgControlsModule } from '@videogular/ngx-videogular/controls';
+import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
+import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
+import { VideogularComponent } from './components/pages/videogular/videogular.component';
 
 @NgModule({
   declarations: [
@@ -25,11 +30,11 @@ import { MatDividerModule } from '@angular/material/divider';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
+    VideogularComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    VimeModule,
     BrowserAnimationsModule,
     MatSidenavModule,
     MatListModule,
@@ -37,6 +42,11 @@ import { MatDividerModule } from '@angular/material/divider';
     MatCardModule,
     MatIconModule,
     MatDividerModule,
+    VimeModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
