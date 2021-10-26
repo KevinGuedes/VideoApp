@@ -1,0 +1,21 @@
+<mat-sidenav-container class="container">
+    <mat-sidenav class="container__sidenav" mode="side" opened fixedInViewport="true">
+        <mat-nav-list class="container__sidenav__nav-list">
+            <a mat-list-item routerLink="/">
+                <mat-icon>
+                    home
+                </mat-icon>
+                Home
+            </a>
+            <a mat-list-item routerLink="/vime">
+                <mat-icon>
+                    storefront
+                </mat-icon>
+                Vime
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content class="container__content">
+        <router-outlet></router-outlet>
+   </mat-sidenav-content>
+</mat-sidenav-container>

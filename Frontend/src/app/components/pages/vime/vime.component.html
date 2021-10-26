@@ -1,0 +1,43 @@
+<mat-card class="content">
+    <h1>Vime</h1>
+    <ul>
+        <li>Very bugged</li>
+        <li>Requires lots of configurations to get where we want</li>
+        <li>Providers: Youtube, Dailymotion, Vimeo</li>
+        <li>Plenty of UI customizations</li>
+    </ul>
+
+    <div class="divider">
+        <mat-divider></mat-divider>
+    </div>
+
+    <div class="demo">
+        <h2>Based On URL</h2>
+     
+        <vm-player  class="video-player">
+            <vm-video cross-origin="false" poster="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg">
+                <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" type="video/mp4" />
+            </vm-video>
+            <vm-default-ui>
+                <vm-poster></vm-poster>
+            </vm-default-ui>
+        </vm-player>
+    </div>
+
+    <div class="divider">
+        <mat-divider></mat-divider>
+    </div>
+
+    <div class="demo">
+        <h2>Based On Local File</h2>
+        <vm-player class="video-player">
+            <vm-video cross-origin="true"
+                poster="/assets/capa.png">
+                <source src="/assets/teste.mp4" type="video/mp4" />
+            </vm-video>
+            <vm-default-ui>
+                <vm-poster></vm-poster>
+            </vm-default-ui>
+        </vm-player>
+    </div>
+</mat-card>
