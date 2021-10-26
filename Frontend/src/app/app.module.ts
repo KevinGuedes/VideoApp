@@ -1,6 +1,7 @@
 import { AppComponent } from './app.component';
 import { VimeComponent } from './components/pages/vime/vime.component';
 import { NavComponent } from './components/templates/nav/nav.component';
+import { VideogularComponent } from './components/pages/videogular/videogular.component';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -20,7 +21,6 @@ import { VgCoreModule } from '@videogular/ngx-videogular/core';
 import { VgControlsModule } from '@videogular/ngx-videogular/controls';
 import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
-import { VideogularComponent } from './components/pages/videogular/videogular.component';
 
 @NgModule({
   declarations: [
