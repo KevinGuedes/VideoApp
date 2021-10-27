@@ -24,3 +24,16 @@ body {
 .pros-and-cons {
     width: 70%;
 }
+
+.demo {
+    width: 70% !important;
+    height: 70% !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.video-player {
+    width: 70% !important;
+    height: 70% !important;
+}
