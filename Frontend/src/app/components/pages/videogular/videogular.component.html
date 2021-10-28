@@ -1,7 +1,7 @@
 <mat-card class="content">
     <h1>Ngx Videogular</h1>
 
-    <ul class="pros-and-cons">
+    <ul class="bullets">
         <li>Very simple and intuitive</li>
         <li>Wrapper for HTML 5 video tag</li>
     </ul>
@@ -9,50 +9,20 @@
     <div class="divider">
         <mat-divider></mat-divider>
     </div>
-
-    <div class="demo">
-        <h2>Based On URL</h2>
-        <span>Default controls (From HTML 5)</span>
-
-        <vg-player class="video-player">
-            <video [vgMedia]="$any(mediaURL)" #mediaURL preload="auto" controls>
-                <source src="http://static.videogular.com/assets/videos/videogular.mp4" type="video/mp4">
-            </video>
-        </vg-player>
-    </div>
+    <app-videogular-vp class="demo" src="http://static.videogular.com/assets/videos/videogular.mp4" title="Based On URL"></app-videogular-vp>
 
     <div class="divider">
         <mat-divider></mat-divider>
     </div>
+    <app-videogular-vp class="demo" src="/assets/teste.mp4" title="Based On Local File"></app-videogular-vp>
 
-    <div class="demo">
-        <h2>Based On Local File</h2>
-        <span>Custom controls and settings</span>
-        <vg-player class="video-player">
-
-            <vg-scrub-bar [vgSlider]="true">
-                <vg-scrub-bar-current-time [vgSlider]="true"></vg-scrub-bar-current-time>
-                <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
-            </vg-scrub-bar>
-
-            <vg-controls>
-                <vg-play-pause></vg-play-pause>
-                <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
-                <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
-                <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
-                <vg-mute></vg-mute>
-                <vg-volume></vg-volume>
-                <vg-fullscreen></vg-fullscreen>
-            </vg-controls>
-
-            <video [vgMedia]="$any(mediaLOCAL)" #mediaLOCAL preload="auto">
-                <source src="/assets/teste.mp4" type="video/mp4">
-            </video>
-        </vg-player>
-    </div>
-
-    
     <div class="divider">
         <mat-divider></mat-divider>
     </div>
+    <app-videogular-vp class="demo" src="https://localhost:5001/api/video/direct" title="Using The API Endpoint On The Video Source"></app-videogular-vp>
+
+    <div *ngIf="videoExists" class="divider">
+        <mat-divider></mat-divider>
+    </div>
+    <app-videogular-vp *ngIf="videoExists" class="demo" [src]="videoInfo.safeUrl" [mimeType]="videoInfo.mimeType" title="Based On File And Using BLOB (Dynamic Type)"></app-videogular-vp>
 </mat-card>

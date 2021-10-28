@@ -1,15 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using VideoApp.API.Interfaces;
+using System.IO;
 
 namespace VideoApp.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class VideoController : ControllerBase
     {
+        private const string VIDEO_PATH = @"C:";
+
         [HttpGet]
-        public IActionResult GetVideoFile([FromServices] IVideoService videoService)
-            => File(videoService.GetVideo(@"C:").ToArray(), "video/mp4", "videoDoBackEnd");   
+        public IActionResult GetVideoFile()
+        {
+            var fileInfo = new FileInfo(VIDEO_PATH);
+
+            return PhysicalFile(VIDEO_PATH, $"video/{fileInfo.Extension.Replace(".", "")}", "videoDoBackEnd");
+        }
+
+        [HttpGet("direct")]
+        public IActionResult GetVideoFileDirect()
+            => PhysicalFile(VIDEO_PATH, $"video/webm", "videoDoBackEnd");
     }
 }

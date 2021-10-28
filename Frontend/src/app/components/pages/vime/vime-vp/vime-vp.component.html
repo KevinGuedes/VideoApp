@@ -1,0 +1,9 @@
+<h2>{{title}}</h2>
+<vm-player class="video-player">
+    <vm-video>
+        <source [src]="src" [type]="mimeType" />
+    </vm-video>
+    <vm-default-ui>
+        <vm-poster></vm-poster>
+    </vm-default-ui>
+</vm-player>
