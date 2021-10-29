@@ -15,7 +15,7 @@ export class VimeComponent implements OnInit {
     private readonly _videoService: VideoService,
   ) { }
 
-  public getApiVideoEndpoint(): string {
+  public get getApiVideoEndpoint(): string {
     return this._videoService.getApiVideoEndpoint();
   }
 
