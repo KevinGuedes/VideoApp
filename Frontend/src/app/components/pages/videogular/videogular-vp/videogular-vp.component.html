@@ -6,7 +6,7 @@
         <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
     </vg-scrub-bar>
     
-    <vg-controls>
+    <vg-controls [vgAutohide]="true" [vgAutohideTime]="3">
         <vg-play-pause></vg-play-pause>
         <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
         <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
