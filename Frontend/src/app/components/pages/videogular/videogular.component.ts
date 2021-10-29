@@ -10,17 +10,24 @@ import { VideoService } from 'src/app/services/video.service';
 export class VideogularComponent implements OnInit {
 
   public videoInfo!: VideoInfo;
-  public directUrl: string = 'https://localhost:5001/api/video/direct';
-  public get videoExists(): boolean {
-    return Boolean(this.videoInfo)
-  }
 
   constructor(
     private readonly _videoService: VideoService,
   ) { }
 
+  public getApiVideoEndpoint(): string {
+    return this._videoService.getApiVideoEndpoint();
+  }
+
+  public get getVideoStreamEndpoint(): string {
+    return this._videoService.getVideoStreamEndpoint();
+  }
+
+  public get videoExists(): boolean {
+    return Boolean(this.videoInfo)
+  }
+
   async ngOnInit(): Promise<void> {
     this.videoInfo = await this._videoService.getVideoInfoWithBlob();
   }
-
 }

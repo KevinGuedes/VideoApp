@@ -16,6 +16,14 @@ export class VideoService {
     private readonly _sanitizer: DomSanitizer,
   ) { }
 
+  public getApiVideoEndpoint(): string {
+    return `${this._videoApiUrl}/direct`;
+  }
+
+  public getVideoStreamEndpoint(): string {
+    return `${this._videoApiUrl}/stream`;
+  }
+
   public async getVideoInfoWithBlob(): Promise<VideoInfo> {
     return new Promise<VideoInfo>((resolve, reject) => {
       this._http.get(this._videoApiUrl, { responseType: 'arraybuffer', observe: 'response' })

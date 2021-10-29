@@ -13,12 +13,15 @@ namespace VideoApp.API.Controllers
         public IActionResult GetVideoFile()
         {
             var fileInfo = new FileInfo(VIDEO_PATH);
-
             return PhysicalFile(VIDEO_PATH, $"video/{fileInfo.Extension.Replace(".", "")}", "videoDoBackEnd");
         }
 
         [HttpGet("direct")]
         public IActionResult GetVideoFileDirect()
             => PhysicalFile(VIDEO_PATH, $"video/webm", "videoDoBackEnd");
+
+        [HttpGet("stream")]
+        public IActionResult GetVideoStream()
+            => PhysicalFile(VIDEO_PATH, "application/octet-stream", enableRangeProcessing: true);
     }
 }
