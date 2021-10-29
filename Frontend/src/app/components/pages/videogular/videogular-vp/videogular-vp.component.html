@@ -16,8 +16,7 @@
         <vg-fullscreen></vg-fullscreen>
     </vg-controls>
 
-
-    <video [vgMedia]="$any(media)" #media preload="auto">
-        <source [src]="src" [type]="mimeType">
+    <video [vgMedia]="$any(media)" #media preload="auto" controlsList="nodownload">
+        <source [src]="src" [type]="mimeType" controlsList="nodownload">
     </video>
 </vg-player>

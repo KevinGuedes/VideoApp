@@ -19,10 +19,11 @@
     <div class="divider">
         <mat-divider></mat-divider>
     </div>
-    <app-videogular-vp class="demo" src="https://localhost:5001/api/video/direct" title="Using The API Endpoint On The Video Source"></app-videogular-vp>
+    <app-videogular-vp class="demo" [src]="directUrl" title="Using The API Endpoint On The Video Source"></app-videogular-vp>
 
     <div *ngIf="videoExists" class="divider">
         <mat-divider></mat-divider>
     </div>
     <app-videogular-vp *ngIf="videoExists" class="demo" [src]="videoInfo.safeUrl" [mimeType]="videoInfo.mimeType" title="Based On File And Using BLOB (Dynamic Type)"></app-videogular-vp>
+
 </mat-card>

@@ -21,7 +21,9 @@ import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { HttpClientModule } from '@angular/common/http';
 import { VimeVpComponent } from './components/pages/vime/vime-vp/vime-vp.component';
-import { VideogularVpComponent } from './components/pages/videogular/videogular-vp/videogular-vp.component'
+import { VideogularVpComponent } from './components/pages/videogular/videogular-vp/videogular-vp.component';
+import { VideoTagComponent } from './components/pages/video-tag/video-tag.component';
+import { VideoTagVpComponent } from './components/pages/video-tag/video-tag-vp/video-tag-vp.component'
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { VideogularVpComponent } from './components/pages/videogular/videogular-
     VideogularComponent,
     VimeVpComponent,
     VideogularVpComponent,
+    VideoTagComponent,
+    VideoTagVpComponent,
   ],
   imports: [
     HttpClientModule,

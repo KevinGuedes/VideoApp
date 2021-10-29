@@ -3,11 +3,11 @@ import { VideoInfo } from 'src/app/models/video-info.model';
 import { VideoService } from 'src/app/services/video.service';
 
 @Component({
-  selector: 'app-vime',
-  templateUrl: './vime.component.html',
-  styleUrls: ['./vime.component.scss']
+  selector: 'app-video-tag',
+  templateUrl: './video-tag.component.html',
+  styleUrls: ['./video-tag.component.scss']
 })
-export class VimeComponent implements OnInit {
+export class VideoTagComponent implements OnInit {
 
   public videoInfo!: VideoInfo;
   public directUrl: string = 'https://localhost:5001/api/video/direct';
