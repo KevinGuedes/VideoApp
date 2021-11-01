@@ -29,15 +29,14 @@ export class VideoService {
       this._http.get(this._videoApiUrl, { responseType: 'arraybuffer', observe: 'response' })
         .subscribe(response => {
 
-          if (response.status != 200)
-            reject(new Error("Failed to get video information"))
+          if (response.status != 200 || response.body || response.headers.get("Content-Type"))
+            reject(new Error("Failed to get video from back end"))
 
           const blob = new window.Blob([response.body as ArrayBuffer]);
           const untrustedVideoUrl = window.URL.createObjectURL(blob);
           const safeUrl = this._sanitizer.bypassSecurityTrustUrl(untrustedVideoUrl);
           const videoInfo = new VideoInfo(safeUrl, response.headers.get("Content-Type") as string);
 
-          console.log(videoInfo);
           resolve(videoInfo)
         })
     })
