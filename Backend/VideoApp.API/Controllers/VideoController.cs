@@ -21,7 +21,7 @@ namespace VideoApp.API.Controllers
 
         [HttpGet]
         public IActionResult GetVideoFileDirect()
-            => PhysicalFile(_videoPath, $"video/{_mimeType}", VIDEO_NAME);
+            => PhysicalFile(_videoPath, $"video/{_mimeType}", fileDownloadName: VIDEO_NAME);
 
         [HttpGet("stream")]
         public IActionResult GetVideoStream()
