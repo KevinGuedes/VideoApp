@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System.IO;
 
 namespace VideoApp.API.Controllers
@@ -7,21 +8,23 @@ namespace VideoApp.API.Controllers
     [Route("api/[controller]")]
     public class VideoController : ControllerBase
     {
-        private const string VIDEO_PATH = @"C:";
+        private const string VIDEO_NAME = "videoFromBackEnd";
+        private readonly string _videoPath;
+        private readonly string _mimeType;
 
-        [HttpGet]
-        public IActionResult GetVideoFile()
+        public VideoController(IConfiguration configuration)
         {
-            var fileInfo = new FileInfo(VIDEO_PATH);
-            return PhysicalFile(VIDEO_PATH, $"video/{fileInfo.Extension.Replace(".", "")}", "videoDoBackEnd");
+            _videoPath = configuration.GetValue<string>("VideoPath");
+            var fileInfo = new FileInfo(_videoPath);
+            _mimeType = fileInfo.Extension[(fileInfo.Extension.IndexOf(".") + 1)..];
         }
 
-        [HttpGet("direct")]
+        [HttpGet]
         public IActionResult GetVideoFileDirect()
-            => PhysicalFile(VIDEO_PATH, $"video/webm", "videoDoBackEnd");
+            => PhysicalFile(_videoPath, $"video/{_mimeType}", VIDEO_NAME);
 
         [HttpGet("stream")]
         public IActionResult GetVideoStream()
-            => PhysicalFile(VIDEO_PATH, "application/octet-stream", enableRangeProcessing: true);
+            => PhysicalFile(_videoPath, "application/octet-stream", fileDownloadName: VIDEO_NAME, enableRangeProcessing: true);
     }
 }

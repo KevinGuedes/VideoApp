@@ -17,7 +17,7 @@ export class VideoService {
   ) { }
 
   public getApiVideoEndpoint(): string {
-    return `${this._videoApiUrl}/direct`;
+    return this._videoApiUrl;
   }
 
   public getVideoStreamEndpoint(): string {
