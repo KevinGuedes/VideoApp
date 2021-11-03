@@ -21,23 +21,28 @@ export class VideoUploadComponent implements OnInit {
   }
 
   public uploadVideoFile = (files: FileList | null) => {
-    if (files) {
-      let fileToUpload = files[0];
-      this.uploadProgress = 0;
-      this.showUploadStatus = true;
-      this.showUploadProgress = true;
-      this.showUploadFinishedMessage = false;
+    try {
+      if (files) {
+        let fileToUpload = files[0];
+        this.uploadProgress = 0;
+        this.showUploadStatus = true;
+        this.showUploadProgress = true;
+        this.showUploadFinishedMessage = false;
 
-      this._videoService.uploadProgress.subscribe((uploadProgress: number) => this.uploadProgress = uploadProgress)
-      this._videoService.uploadFinished.subscribe(_ => {
-        this.showUploadProgress = false;
-        this.showUploadFinishedMessage = true;
-      })
+        this._videoService.uploadProgress.subscribe((uploadProgress: number) => this.uploadProgress = uploadProgress)
+        this._videoService.uploadFinished.subscribe(_ => {
+          this.showUploadProgress = false;
+          this.showUploadFinishedMessage = true;
+        })
 
-      this._videoService.uploadVideo(fileToUpload);
+        this._videoService.uploadVideo(fileToUpload);
+      }
+      else {
+        console.error('Failed to upload file');
+      }
     }
-    else {
-      console.error('Failed to upload file');
+    catch (error) {
+      console.error(error);
     }
   }
 }

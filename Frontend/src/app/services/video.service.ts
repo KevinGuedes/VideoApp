@@ -58,6 +58,9 @@ export class VideoService {
   }
 
   public uploadVideo(file: File): void {
+    if (file.type != 'video/mp4' && file.type != 'video/webm')
+      throw new Error('Invalid file type')
+
     const formData = new FormData();
     formData.append('video-file-from-front-end', file, file.name);
 
