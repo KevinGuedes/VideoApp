@@ -32,6 +32,61 @@ namespace VideoApp.API.Controllers
         public IActionResult GetVideoStream()
             => PhysicalFile(_videoPath, "application/octet-stream", fileDownloadName: VIDEO_NAME, enableRangeProcessing: true);
 
+        //[HttpGet("stream-async")]
+        //public async Task GetVideoStreamAsync()
+        //{
+        //    Stream iStream = null;
+        //    byte[] buffer = new Byte[16 * 131072];
+        //    int length;
+        //    long dataToRead;
+
+        //    try
+        //    {
+        //        iStream = new FileStream(_videoPath, FileMode.Open, FileAccess.Read, FileShare.Read);
+        //        dataToRead = iStream.Length;
+        //        int startbyte = 0;
+
+        //        Response.Headers["Accept-Ranges"] = "bytes";
+        //        Response.ContentType = "application/octet-stream";
+
+        //        if (!String.IsNullOrEmpty(Request.Headers["Range"]))
+        //        {
+        //            string[] range = Request.Headers["Range"].ToString().Split(new char[] { '=', '-' });
+        //            startbyte = Int32.Parse(range[1]);
+        //            iStream.Seek(startbyte, SeekOrigin.Begin);
+
+        //            Response.StatusCode = 206;
+        //            Response.Headers["Content-Range"] = String.Format(" bytes {0}-{1}/{2}", startbyte, dataToRead - 1, dataToRead);
+        //        }
+
+        //        var outputStream = this.Response.Body;
+
+        //        while (dataToRead > 0)
+        //        {
+        //            if (HttpContext.RequestAborted.IsCancellationRequested == false)
+        //            {
+        //                length = await iStream.ReadAsync(buffer, 0, buffer.Length);
+        //                await outputStream.WriteAsync(buffer, 0, buffer.Length);
+        //                outputStream.Flush();
+
+        //                buffer = new Byte[buffer.Length];
+        //                dataToRead -= buffer.Length;
+        //            }
+        //            else
+        //                dataToRead = -1;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Message);
+        //    }
+        //    finally
+        //    {
+        //        if (iStream != null)
+        //            iStream.Close();
+        //    }
+        //}
+
         [HttpPost, DisableRequestSizeLimit]
         public async Task<IActionResult> UploadVideo()
         {
