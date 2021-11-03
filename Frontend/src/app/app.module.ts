@@ -23,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { VimeVpComponent } from './components/pages/vime/vime-vp/vime-vp.component';
 import { VideogularVpComponent } from './components/pages/videogular/videogular-vp/videogular-vp.component';
 import { VideoTagComponent } from './components/pages/video-tag/video-tag.component';
-import { VideoTagVpComponent } from './components/pages/video-tag/video-tag-vp/video-tag-vp.component'
+import { VideoTagVpComponent } from './components/pages/video-tag/video-tag-vp/video-tag-vp.component';
+import { VideoUploadComponent } from './components/pages/video-upload/video-upload.component'
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { VideoTagVpComponent } from './components/pages/video-tag/video-tag-vp/v
     VideogularVpComponent,
     VideoTagComponent,
     VideoTagVpComponent,
+    VideoUploadComponent,
   ],
   imports: [
     HttpClientModule,
