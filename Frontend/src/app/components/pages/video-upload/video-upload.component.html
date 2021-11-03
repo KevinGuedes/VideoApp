@@ -5,5 +5,14 @@
         <mat-divider></mat-divider>
     </div>
 
+    <h2>Upload Video Files To Back End</h2>
+    <input class="file-input" type="file" #videoToUpload placeholder="Choose a file" (change)="uploadVideoFile(videoToUpload.files)">
+    <button mat-raised-button color="primary" (click)="videoToUpload.click()">Upload Video File</button>
 
+    <div *ngIf="showUploadStatus" class="upload-result">
+        <mat-progress-spinner *ngIf="showUploadProgress" aria-label="Rating" mode="determinate" [value]="uploadProgress"></mat-progress-spinner>
+
+        <mat-icon *ngIf="showUploadFinishedMessage" class="success-icon">check</mat-icon>
+        <p *ngIf="showUploadFinishedMessage">Upload finished</p>
+    </div>
 </mat-card>

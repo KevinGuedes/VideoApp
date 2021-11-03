@@ -1,0 +1,19 @@
+.file-input {
+    display: none;
+}
+
+.upload-result {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+}
+
+.success-icon {
+    color: #28a745;
+    font-size: 4rem;
+    margin: 1rem 3rem 3rem 1.2rem;
+    vertical-align: text-bottom;
+    text-align: center;
+}

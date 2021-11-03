@@ -1,9 +1,4 @@
-import { AppComponent } from './app.component';
-import { HomeComponent } from './components/pages/home/home.component';
-import { VimeComponent } from './components/pages/vime/vime.component';
-import { NavComponent } from './components/templates/nav/nav.component';
-import { VideogularComponent } from './components/pages/videogular/videogular.component';
-
+//#region Modules
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,11 +15,22 @@ import { VgControlsModule } from '@videogular/ngx-videogular/controls';
 import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
 import { HttpClientModule } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+//#endregion
+
+//#region Components
+import { AppComponent } from './app.component';
+import { HomeComponent } from './components/pages/home/home.component';
+import { VimeComponent } from './components/pages/vime/vime.component';
+import { NavComponent } from './components/templates/nav/nav.component';
+import { VideogularComponent } from './components/pages/videogular/videogular.component';
 import { VimeVpComponent } from './components/pages/vime/vime-vp/vime-vp.component';
 import { VideogularVpComponent } from './components/pages/videogular/videogular-vp/videogular-vp.component';
 import { VideoTagComponent } from './components/pages/video-tag/video-tag.component';
 import { VideoTagVpComponent } from './components/pages/video-tag/video-tag-vp/video-tag-vp.component';
-import { VideoUploadComponent } from './components/pages/video-upload/video-upload.component'
+import { VideoUploadComponent } from './components/pages/video-upload/video-upload.component';
+//#endregion
 
 @NgModule({
   declarations: [
@@ -55,6 +61,8 @@ import { VideoUploadComponent } from './components/pages/video-upload/video-uplo
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
