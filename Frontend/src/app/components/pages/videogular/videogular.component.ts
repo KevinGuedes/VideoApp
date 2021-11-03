@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VideoInfo } from 'src/app/models/video-info.model';
 import { VideoService } from 'src/app/services/video.service';
+import { handlePromise } from 'src/app/tools/promise-handler.tool'
 
 @Component({
   selector: 'app-videogular',
@@ -28,6 +29,9 @@ export class VideogularComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.videoInfo = await this._videoService.getVideoInfoWithBlob();
+    const [result] = await handlePromise(this._videoService.getVideoInfoWithBlob());
+
+    if (result)
+      this.videoInfo = result;
   }
 }
