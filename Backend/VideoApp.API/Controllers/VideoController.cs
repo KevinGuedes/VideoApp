@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System;
 using System.IO;
 using System.Net.Http.Headers;
@@ -12,12 +13,16 @@ namespace VideoApp.API.Controllers
     public class VideoController : ControllerBase
     {
         private const string VIDEO_NAME = "videoFromBackEnd";
+        private readonly ILogger<VideoController> _logger;
         private readonly string _videoPath;
         private readonly string _savePath;
         private readonly string _mimeType;
 
-        public VideoController(IConfiguration configuration)
+        public VideoController(
+            IConfiguration configuration, 
+            ILogger<VideoController> logger)
         {
+            _logger = logger;
             _videoPath = configuration.GetValue<string>("VideoPath");
             _savePath = configuration.GetValue<string>("SavePath");
             var fileInfo = new FileInfo(_videoPath);
@@ -26,11 +31,17 @@ namespace VideoApp.API.Controllers
 
         [HttpGet]
         public IActionResult GetVideoFileDirect()
-            => PhysicalFile(_videoPath, $"video/{_mimeType}", fileDownloadName: VIDEO_NAME);
+        {
+            _logger.LogInformation("Streaming video file");
+            return PhysicalFile(_videoPath, $"video/{_mimeType}", fileDownloadName: VIDEO_NAME);
+        }
 
         [HttpGet("stream")]
         public IActionResult GetVideoStream()
-            => PhysicalFile(_videoPath, "application/octet-stream", fileDownloadName: VIDEO_NAME, enableRangeProcessing: true);
+        {
+            _logger.LogInformation("Streaming video file");
+            return PhysicalFile(_videoPath, "application/octet-stream", fileDownloadName: VIDEO_NAME, enableRangeProcessing: true);
+        }
 
         //[HttpGet("stream-async")]
         //public async Task GetVideoStreamAsync()
@@ -92,8 +103,15 @@ namespace VideoApp.API.Controllers
         {
             try
             {
+                _logger.LogInformation("Saving video file");
                 var formCollection = await Request.ReadFormAsync();
                 var file = formCollection.Files[0];
+
+                if (!Directory.Exists(_savePath))
+                {
+                    _logger.LogInformation("Creating folder");
+                    Directory.CreateDirectory(_savePath);
+                }
 
                 if (file.Length > 0)
                 {
@@ -102,13 +120,18 @@ namespace VideoApp.API.Controllers
                     using var stream = new FileStream(fullPath, FileMode.Create);
                     file.CopyTo(stream);
 
+                    _logger.LogInformation("Video file saved");
                     return Ok();
                 }
                 else
+                {
+                    _logger.LogError("Failed to save file. File lenght is 0");
                     return BadRequest();
+                }
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Failed to save file");
                 return StatusCode(500, $"Internal server error: {ex}");
             }
         }
